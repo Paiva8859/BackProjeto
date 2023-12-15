@@ -1,0 +1,922 @@
+<style>
+    header {
+        background-color: #392818;
+        height: 80px;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    #headerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    #headerContent a {
+        font-size: 2.5vh;
+        color: aliceblue;
+        text-decoration: none;
+    }
+
+    #arrow {
+        height: 6vh;
+        transition: transform 0.5s;
+    }
+
+    body {
+        margin: 0px;
+        height: 330vh;
+    }
+
+    footer {
+        width: 100%;
+        height: 12%;
+        background-color: #392818;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0px;
+    }
+
+    #footerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #footerContent ul {
+        color: aliceblue;
+    }
+
+    /*NON SELECTABLE ITEMS*/
+    #login {
+        user-select: none;
+        margin-top: 15px;
+    }
+
+    img {
+        user-select: none;
+    }
+
+    /*CATEGORIES*/
+    #categories {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #ffffcc;
+        height: 5vh;
+    }
+
+    #categories a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /*SIDE MENU*/
+    #sideMenu {
+        display: flex;
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        z-index: 2;
+        background-color: #392818;
+        width: 25vh;
+        height: 15vh;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    #sideMenu a {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    /*TEXT*/
+    .text {
+        display: flex;
+        width: 35%;
+        align-self: flex-start;
+        margin-left: 2vh;
+        margin-bottom: 0px;
+        background-color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    .textStartFinal {
+        margin: 2vh;
+        margin-top: 10%;
+        background-color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    #title {
+        background-color: #392818;
+        height: 45px;
+        width: auto;
+        color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    .title1 {
+        margin-top: 10%;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /*CARDS*/
+    .products {
+        width: 100%;
+        min-height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 3vh;
+        margin-right: 0px;
+        align-self: flex-end;
+        flex-direction: row;
+    }
+
+    .cards {
+        width: 100%;
+        min-height: 35vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #392818;
+        border-radius: 15px;
+    }
+
+    .card {
+        position: relative;
+        background: transparent;
+        width: 300px;
+        height: 300px;
+        border: none;
+    }
+
+    .card:hover {
+        width: 300px;
+    }
+
+    .card .container-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffcc;
+        width: 190px;
+        height: 190px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+        transition: all .3s ease-in-out, opacity .3s;
+        transition-delay: .6s, 0s;
+    }
+
+    .card:hover .container-image {
+        opacity: 0;
+        border-radius: 8px;
+        transition-delay: 0s, .6s;
+    }
+
+    .card .container-image .image-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 125px;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(2px 2px 2px #1818188a);
+        transition: all .3s ease-in-out;
+        transition-delay: .4s;
+    }
+
+    .card:hover .container-image .image-circle {
+        opacity: 0;
+        transition-delay: 0s;
+    }
+
+    .card .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffcc;
+        padding: 20px;
+        width: 190px;
+        height: 190px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+        visibility: hidden;
+        transition: .3s ease-in-out;
+        transition-delay: 0s;
+        z-index: 1;
+    }
+
+    .card:hover .content {
+        width: 290px;
+        height: 190px;
+        visibility: visible;
+        transition-delay: .5s;
+    }
+
+    .card .content .detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .card:hover .content .detail {
+        color: #181818;
+        opacity: 100%;
+        transition: 1s;
+        transition-delay: .3s;
+    }
+
+    .card .content .detail span {
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .card .content .detail button {
+        background: #b8854b;
+        margin-top: auto;
+        width: 75px;
+        height: 25px;
+        color: #ffffff;
+        font-size: 13px;
+        border: none;
+        border-radius: 8px;
+        transition: .3s ease-in-out;
+    }
+
+    .card .content .detail button:hover {
+        background: #d39f63;
+    }
+
+    .card .content .product-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card .content .product-image .box-image {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: -25%;
+        width: 100%;
+        height: 115%;
+        opacity: 0;
+        transform: scale(.5);
+        transition: all .5s ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .card:hover .content .product-image .box-image {
+        top: -25%;
+        left: 0;
+        opacity: 100%;
+        transform: scale(1);
+        transition-delay: .3s;
+    }
+
+    .card .content .product-image .box-image .img-product {
+        width: 7rem;
+    }
+
+    @media (max-width: 720px) {
+        .text {
+            display: none;
+        }
+
+        .cards {
+            width: 100vh;
+        }
+
+        .card {
+            position: relative;
+            background: transparent;
+            width: 300px;
+            height: 300px;
+            border: none;
+        }
+
+        .products {
+            justify-content: unset;
+        }
+
+        .textStartFinal {
+            margin-top: 20%;
+        }
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos-Gato</title>
+    <link rel="stylesheet" href="../css/headerFooter.css">
+    <link rel="stylesheet" href="../css/produtos.css">
+</head>
+
+<body>
+    <header>
+        <div id="headerContent">
+            <img src="../Images/arrowRight.png" alt="arrow" id="arrow">
+            <img src="../Images/Logo.png" id="logo">
+            <a href="../html/login.html" id='login'>Entrar</a>
+        </div>
+
+        <div id="sideMenu">
+            <a href="">Agendar Consulta</a>
+            <a href="">SAC</a>
+            <a href="">Feedback</a>
+        </div>
+
+        <section id="categories">
+            <a href="../html/produtosCachorro.html">Cachorro</a>
+            <a href="../html/produtosGato.html">Gato</a>
+            <a href="../html/produtosPeixe.html">Peixe</a>
+            <a href="../html/produtosPassaro.html">Pássaro</a>
+            <a href="../html/ofertas.html">Ofertas</a>
+        </section>
+    </header>
+
+    <main>
+        <div class="textStartFinal">
+            <h1 id="title">Peixe</h1>
+
+            <p>Oferecer aos peixes um ecossistema semelhante ao encontrado em seu habitat é sem dúvida uma necessidade
+                para a qualidade de vida desses seres. Para os aquaristas iniciantes, porém, pode ser uma tarefa difícil
+                saber todos os objetos e acessórios necessários para o aquário.
+                <br>
+                Desse modo, aprender como cuidar e oferecer todo o suporte aos peixes é fundamental, dado que, assim,
+                você garante a longevidade do pet. Então, obtenha aquários, luminária LED, filtro, termômetro,
+                termostato, bomba submersa e outros objetos de qualidade para seu amigo de estimação.
+            </p>
+        </div>
+
+        <h2 class="text" id="title">Aquário para peixes</h2>
+        <section class="products">
+            <div class="cards">
+                <div class="card" id="i">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/aquario1.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/aquario1.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/aquario2.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/aquario2.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/aquario3.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/aquario3.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text">
+                <p> O aquário é a moradia dos peixes e a base para a sobrevivência do pet e, por isso, necessita
+                    oferecer
+                    tudo que esses amigos precisam. Assim, prefira um recipiente de vidro transparente e com espaço
+                    suficiente para as espécies se locomoverem sem nenhuma dificuldade. Além disso, considere os objetos
+                    que serão acrescentados e poderão ocupar muito espaço, o que pode atrapalhar a locomoção dos peixes.
+                    Portanto, um aquário espaçoso é o primeiro passo para a saúde dos amigos de estimação e para uma
+                    criação de qualidade.
+                </p>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Termômetro e termostato</h2>
+        <section class="products">
+            <div class="text">
+                <p>Para oferecer um ecossistema aos peixes mais semelhante com os encontrados nos ambientes naturais das
+                    diferentes espécies, o termômetro e o termostato são indispensáveis.
+                    <br>
+                    Os peixes regulam a própria temperatura a partir do clima da água, e o termostato regula o clima
+                    para deixar a água mais quente ou fria. Já o termômetro é utilizado para medir a temperatura e
+                    indicar se ela está adequada para os peixes e outros seres do aquário.
+                </p>
+            </div>
+
+            <div class="cards">
+                <div class="card" id="i">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/term1.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/term1.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/term2.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/term2.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/term3.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/term3.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Acessórios</h2>
+        <section class="products">
+            <div class="cards">
+                <div class="card" id="i">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/enf1p.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/enf1p.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/enf2p.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/enf2p.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/enf3p.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/enf3p.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text">
+                <p>Quem pratica aquarismo deseja deixar a moradia dos peixes sempre bonita e adequada para a
+                    sobrevivência e bem-estar dos amigos pets. E os acessórios não só servem como decoração, mas também
+                    oferecem conforto aos peixes e similaridade com o habitat natural.
+                    <br>
+                    Por esse motivo, produtos para aquário, como cavernas e plantas, ajudam os peixinhos a se adaptarem
+                    e a se sentirem em casa. Então, não hesite em decorar o aquário dos amigos de estimação e de
+                    oferecer diferentes opções de objetos para o aquário.
+                </p>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Substrato</h2>
+        <section class="products">
+            <div class="text">
+                <p>O substrato também decora e oferece diferentes funções para bem-estar dos peixes, pois algumas
+                    espécies têm o hábito de afundar a cabeça em algumas situações. Portanto, prefira um substrato fino
+                    e sem corante ou componentes químicos, para não prejudicar a água e a saúde dos peixes.
+                    <br>
+                    Existem substratos de diferentes cores, o que permite decorar o aquário como desejar e deixá-lo
+                    ainda mais colorido e bonito! Dessa forma, você atrai os olhares para o aquário e também o deixa de
+                    acordo com as necessidades específicas do peixe.
+                </p>
+            </div>
+
+            <div class="cards">
+                <div class="card" id="i">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/subs1p.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/subs1p.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/subs2p.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/subs2p.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/subs3p.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/subs3p.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <div class="textStartFinal">
+            <h2 id="title">Na DEV&PET, encontre tudo que os peixes precisam</h2>
+            <p>Equipe o habitat dos seus peixes com os equipamentos e acessórios para aquário disponíveis no Pet Shop
+                on-line da DEV&PET. Aqui, você pode encontrar tudo o que o viveiro do seu nadador precisa, além de ração
+                e
+                diferentes petiscos. Confira!
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footerContent">
+            <ul>DEV&PET | Paiva8859 - LuigiSousaa - GuiBrum22</ul>
+        </div>
+    </footer>
+</body>
+<script>
+    //====================================MENU====================================\\
+    var logo = document.getElementById('logo');
+
+    // EVENT LISTENERS
+    logo.addEventListener('click', function () {
+        if (!window.location.pathname.endsWith('/index.html')) {
+            homeRedirect();
+        }
+    });
+
+    // FUNCTIONS
+    function homeRedirect() {
+        window.location.href = '../index.html';
+    }
+
+    //====================================SIDE-MENU====================================\\
+    const sideMenu = document.getElementById('sideMenu');
+    const arrow = document.getElementById('arrow');
+    var cSideMenu = 0;
+    let isRotated = false;
+
+    //EVENT LISTENERS
+    arrow.addEventListener('click', showSideMenu);
+
+    //FUNCTIONS
+    function showSideMenu() {
+        if (cSideMenu == 0) {
+            sideMenu.style.display = 'flex';
+            cSideMenu = 1;
+        } else {
+            sideMenu.style.display = 'none';
+            cSideMenu = 0;
+        }
+    }
+
+
+    arrow.addEventListener("click", () => {
+        if (isRotated) {
+            arrow.style.transform = "rotate(0deg)";
+            isRotated = false;
+        } else {
+            arrow.style.transform = "rotate(90deg)";
+            isRotated = true;
+        }
+    });
+</script>
+
+</html>

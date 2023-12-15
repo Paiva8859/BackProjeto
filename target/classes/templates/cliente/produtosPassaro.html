@@ -1,0 +1,928 @@
+<style>
+    header {
+        background-color: #392818;
+        height: 80px;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    #headerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    #headerContent a {
+        font-size: 2.5vh;
+        color: aliceblue;
+        text-decoration: none;
+    }
+
+    #arrow {
+        height: 6vh;
+        transition: transform 0.5s;
+    }
+
+    body {
+        margin: 0px;
+        height: 330vh;
+    }
+
+    footer {
+        width: 100%;
+        height: 12%;
+        background-color: #392818;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0px;
+    }
+
+    #footerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #footerContent ul {
+        color: aliceblue;
+    }
+
+    /*NON SELECTABLE ITEMS*/
+    #login {
+        user-select: none;
+        margin-top: 15px;
+    }
+
+    img {
+        user-select: none;
+    }
+
+    /*CATEGORIES*/
+    #categories {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #ffffcc;
+        height: 5vh;
+    }
+
+    #categories a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /*SIDE MENU*/
+    #sideMenu {
+        display: flex;
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        z-index: 2;
+        background-color: #392818;
+        width: 25vh;
+        height: 15vh;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    #sideMenu a {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    /*TEXT*/
+    .text {
+        display: flex;
+        width: 35%;
+        align-self: flex-start;
+        margin-left: 2vh;
+        margin-bottom: 0px;
+        background-color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    .textStartFinal {
+        margin: 2vh;
+        margin-top: 10%;
+        background-color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    #title {
+        background-color: #392818;
+        height: 45px;
+        width: auto;
+        color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    .title1 {
+        margin-top: 10%;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /*CARDS*/
+    .products {
+        width: 100%;
+        min-height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 3vh;
+        margin-right: 0px;
+        align-self: flex-end;
+        flex-direction: row;
+    }
+
+    .cards {
+        width: 100%;
+        min-height: 35vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #392818;
+        border-radius: 15px;
+    }
+
+    .card {
+        position: relative;
+        background: transparent;
+        width: 300px;
+        height: 300px;
+        border: none;
+    }
+
+    .card:hover {
+        width: 300px;
+    }
+
+    .card .container-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffcc;
+        width: 190px;
+        height: 190px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+        transition: all .3s ease-in-out, opacity .3s;
+        transition-delay: .6s, 0s;
+    }
+
+    .card:hover .container-image {
+        opacity: 0;
+        border-radius: 8px;
+        transition-delay: 0s, .6s;
+    }
+
+    .card .container-image .image-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 125px;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(2px 2px 2px #1818188a);
+        transition: all .3s ease-in-out;
+        transition-delay: .4s;
+    }
+
+    .card:hover .container-image .image-circle {
+        opacity: 0;
+        transition-delay: 0s;
+    }
+
+    .card .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffcc;
+        padding: 20px;
+        width: 190px;
+        height: 190px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+        visibility: hidden;
+        transition: .3s ease-in-out;
+        transition-delay: 0s;
+        z-index: 1;
+    }
+
+    .card:hover .content {
+        width: 290px;
+        height: 190px;
+        visibility: visible;
+        transition-delay: .5s;
+    }
+
+    .card .content .detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .card:hover .content .detail {
+        color: #181818;
+        opacity: 100%;
+        transition: 1s;
+        transition-delay: .3s;
+    }
+
+    .card .content .detail span {
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .card .content .detail button {
+        background: #b8854b;
+        margin-top: auto;
+        width: 75px;
+        height: 25px;
+        color: #ffffff;
+        font-size: 13px;
+        border: none;
+        border-radius: 8px;
+        transition: .3s ease-in-out;
+    }
+
+    .card .content .detail button:hover {
+        background: #d39f63;
+    }
+
+    .card .content .product-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card .content .product-image .box-image {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: -25%;
+        width: 100%;
+        height: 115%;
+        opacity: 0;
+        transform: scale(.5);
+        transition: all .5s ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .card:hover .content .product-image .box-image {
+        top: -25%;
+        left: 0;
+        opacity: 100%;
+        transform: scale(1);
+        transition-delay: .3s;
+    }
+
+    .card .content .product-image .box-image .img-product {
+        width: 7rem;
+    }
+
+    @media (max-width: 720px) {
+        .text {
+            display: none;
+        }
+
+        .cards {
+            width: 100vh;
+        }
+
+        .card {
+            position: relative;
+            background: transparent;
+            width: 300px;
+            height: 300px;
+            border: none;
+        }
+
+        .products {
+            justify-content: unset;
+        }
+
+        .textStartFinal {
+            margin-top: 20%;
+        }
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos-Gato</title>
+    <link rel="stylesheet" href="../css/headerFooter.css">
+    <link rel="stylesheet" href="../css/produtos.css">
+</head>
+
+<body>
+    <header>
+        <div id="headerContent">
+            <img src="../Images/arrowRight.png" alt="arrow" id="arrow">
+            <img src="../Images/Logo.png" id="logo">
+            <a href="../html/login.html" id='login'>Entrar</a>
+        </div>
+
+        <div id="sideMenu">
+            <a href="">Agendar Consulta</a>
+            <a href="">SAC</a>
+            <a href="">Feedback</a>
+        </div>
+
+        <section id="categories">
+            <a href="../html/produtosCachorro.html">Cachorro</a>
+            <a href="../html/produtosGato.html">Gato</a>
+            <a href="../html/produtosPeixe.html">Peixe</a>
+            <a href="../html/produtosPassaro.html">Pássaro</a>
+            <a href="../html/ofertas.html">Ofertas</a>
+        </section>
+    </header>
+
+    <main>
+        <div class="textStartFinal">
+            <h1 id="title">Pássaros</h1>
+            <p>
+                Pássaros são aves bastante singulares e especiais, principalmente por manterem os dias dos tutores mais
+                felizes com suas diferentes cantorias, cores e diversidades. Mas é preciso tomar alguns cuidados para
+                ter um viveiro ou gaiola com pássaros e, principalmente, oferecer tudo que eles precisam para viver bem.
+                <br>
+                Como qualquer alteração comportamental pode ser sinal de problemas na adaptação ou alguma doença causada
+                por bactérias e parasitas, é importante levar o pet ao médico-veterinário periodicamente. Também adapte
+                o ambiente com o que ele precisa para viver bem, que vai além de alimentação e água.
+            </p>
+        </div>
+
+        <h2 class="text" id="title">Gaiola para pássaros</h2>
+        <section class="products">
+            <div class="cards">
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/gai1.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Viveiro <br> Play Top Ouro Velho Bragança</span>
+                            <p>R$899,90</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/gai1.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/gai2.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/gai2.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/gai3.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/gai3.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text">
+                <p>
+                    O essencial na hora de escolher uma gaiola para pássaros é pensar no tamanho do pet e no espaço
+                    essencial para ele se movimentar na gaiola. Quanto mais espaçosa, mais livre esses amiguinhos serão
+                    e mais poderão brincar e voar pelo novo local preparado para eles.
+                    <br>
+                    Nesse caso, escolha uma gaiola de fácil manutenção, como com uma bandeja de prática remoção para
+                    fazer a limpeza sem grandes dificuldades. Prefira também uma gaiola com poleiros de madeira, pois há
+                    maior aderência quando o pássaro pousar e há maior simulação com o habitat natural desses bichinhos.
+                </p>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Alimentação dos pássaros</h2>
+        <section class="products">
+            <div class="text">
+                <p>Extremamente importante para a saúde das aves, a alimentação precisa oferecer todos os nutrientes,
+                    vitaminas e minerais necessários de acordo com cada espécie. Assim, diminuem as chances de o pet
+                    ficar doente pela falta de nutrientes, trazendo mais energia para ele se locomover, brincar e se
+                    divertir!
+                    <br>
+                    Escolha uma alimentação com a maior variedade possível de ingredientes naturais, como arroz, aveia,
+                    linhaça, levedura, beterraba, óleo de coco e mel. Assim, as aves de estimação absorvem tudo o que
+                    precisam para viver bem e evita doenças causadas pela falta de suplementos vitamínicos.
+                </p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/alp1.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/alp1.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/alp2.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/alp2.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/alp3.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/alp3.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Acessórios para a gaiola</h2>
+        <section class="products">
+            <div class="cards">
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/ac1pa.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/ac1pa.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/ac2pa.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/ac2pa.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/ac3pa.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/ac3pa.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text">
+                <p>
+                    Não só o comedouro e o bebedouro são importantes para garantir a saúde das aves, acessórios e
+                    brinquedos ajudam a prevenir doenças físicas e psicológicas. Portanto, deixe à disposição do amigo
+                    penudo diferentes opções de brinquedos interativos e acessórios semelhantes ao encontrado em seu
+                    habitat.
+                    <br>
+                    Objetos feitos em madeira são os mais indicados para os passarinhos, principalmente por ser um
+                    material natural. Dessa forma, não corre o risco de os pássaros morderem os objetos ou engolirem
+                    materiais como o plástico, por exemplo.
+                </p>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Medicamentos para pássaros</h2>
+        <section class="products">
+            <div class="text">
+                <p>
+                    Não é raro pássaros silvestres ficarem doentes e precisarem de suplementação e medicamentos para
+                    tratar doenças causadas por parasitas. No caso, existem diferentes tipos de medicamentos para
+                    pássaros com finalidades distintas, de acordo com o problema de saúde dos pets.
+                    <br>
+                    Além dos medicamentos para tratar doenças causadas por parasitas, também há suplementos que ajudam
+                    na troca das penas e do bico. Assim, eles crescem mais fortes, resistentes e coloridos, além de
+                    conter complexos vitamínicos, como vitaminas A, D, E, vitaminas do complexo B, cálcio, Iodo e
+                    aminoácidos.
+                </p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/med1pa.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/med1pa.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/med2pa.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/med2pa.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="container-image">
+                        <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+
+                            <image x="0" y="0" width="100%" height="100px"
+                                xlink:href="../Images/ProdutosImgs/med3pa.png" />
+                        </svg>
+                    </div>
+                    <div class="content">
+                        <div class="detail">
+                            <span>Lorem <br> Ipsum dolor.</span>
+                            <p>$199</p>
+                            <button>Comprar</button>
+                        </div>
+                        <div class="product-image">
+                            <div class="box-image">
+                                <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                    version="1.1"
+                                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                    viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+
+                                    <image x="0" y="0" width="100%" height="200px"
+                                        xlink:href="../Images/ProdutosImgs/med3pa.png" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <div class="textStartFinal">
+            <h2 id="title">Encontre ótimos produtos para pássaros na DEV&PET!</h2>
+            <p>
+                Encontre tudo para o seu amigo de estimação aqui, no Pet Shop on-line da DEV&PE! Além de ótimos preços e
+                condições, você garante tudo o que seu companheiro precisa sem de sair de casa.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footerContent">
+            <ul>DEV&PET | Paiva8859 - LuigiSousaa - GuiBrum22</ul>
+        </div>
+    </footer>
+</body>
+<script>
+    //====================================MENU====================================\\
+    var logo = document.getElementById('logo');
+
+    // EVENT LISTENERS
+    logo.addEventListener('click', function () {
+        if (!window.location.pathname.endsWith('/index.html')) {
+            homeRedirect();
+        }
+    });
+
+    // FUNCTIONS
+    function homeRedirect() {
+        window.location.href = '../index.html';
+    }
+
+    //====================================SIDE-MENU====================================\\
+    const sideMenu = document.getElementById('sideMenu');
+    const arrow = document.getElementById('arrow');
+    var cSideMenu = 0;
+    let isRotated = false;
+
+    //EVENT LISTENERS
+    arrow.addEventListener('click', showSideMenu);
+
+    //FUNCTIONS
+    function showSideMenu() {
+        if (cSideMenu == 0) {
+            sideMenu.style.display = 'flex';
+            cSideMenu = 1;
+        } else {
+            sideMenu.style.display = 'none';
+            cSideMenu = 0;
+        }
+    }
+
+
+    arrow.addEventListener("click", () => {
+        if (isRotated) {
+            arrow.style.transform = "rotate(0deg)";
+            isRotated = false;
+        } else {
+            arrow.style.transform = "rotate(90deg)";
+            isRotated = true;
+        }
+    });
+</script>
+
+</html>

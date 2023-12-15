@@ -1,0 +1,1824 @@
+<style>
+    header {
+        background-color: #392818;
+        height: 80px;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    #headerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    #headerContent a {
+        font-size: 2.5vh;
+        color: aliceblue;
+        text-decoration: none;
+    }
+
+    #arrow {
+        height: 6vh;
+        transition: transform 0.5s;
+    }
+
+    body {
+        margin: 0px;
+        height: 330vh;
+    }
+
+    footer {
+        width: 100%;
+        height: 12%;
+        background-color: #392818;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0px;
+    }
+
+    #footerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #footerContent ul {
+        color: aliceblue;
+    }
+
+    /*NON SELECTABLE ITEMS*/
+    #login {
+        user-select: none;
+        margin-top: 15px;
+    }
+
+    img {
+        user-select: none;
+    }
+
+    /*CATEGORIES*/
+    #categories {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #ffffcc;
+        height: 5vh;
+    }
+
+    #categories a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /*SIDE MENU*/
+    #sideMenu {
+        display: flex;
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        z-index: 2;
+        background-color: #392818;
+        width: 25vh;
+        height: 15vh;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    #sideMenu a {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    /*TEXT*/
+    .text {
+        display: flex;
+        width: 35%;
+        align-self: flex-start;
+        margin-left: 2vh;
+        margin-bottom: 0px;
+        background-color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    .textStartFinal {
+        margin: 2vh;
+        margin-top: 10%;
+        background-color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    #title {
+        background-color: #392818;
+        height: 45px;
+        width: auto;
+        color: #ffffcc;
+        border-radius: 15px;
+    }
+
+    .title1 {
+        margin-top: 10%;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /*CARDS*/
+    .products {
+        width: 100%;
+        min-height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 3vh;
+        margin-right: 0px;
+        align-self: flex-end;
+        flex-direction: row;
+    }
+
+    .cards {
+        width: 100%;
+        min-height: 35vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: #392818;
+        border-radius: 15px;
+    }
+
+    .card {
+        position: relative;
+        background: transparent;
+        width: 300px;
+        height: 300px;
+        border: none;
+    }
+
+    .card:hover {
+        width: 300px;
+    }
+
+    .card .container-image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffcc;
+        width: 190px;
+        height: 190px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+        transition: all .3s ease-in-out, opacity .3s;
+        transition-delay: .6s, 0s;
+    }
+
+    .card:hover .container-image {
+        opacity: 0;
+        border-radius: 8px;
+        transition-delay: 0s, .6s;
+    }
+
+    .card .container-image .image-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 125px;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(2px 2px 2px #1818188a);
+        transition: all .3s ease-in-out;
+        transition-delay: .4s;
+    }
+
+    .card:hover .container-image .image-circle {
+        opacity: 0;
+        transition-delay: 0s;
+    }
+
+    .card .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffcc;
+        padding: 20px;
+        width: 190px;
+        height: 190px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 3px 1px #1818183d, 2px 2px 3px #18181865, inset 2px 2px 2px #ffffff;
+        visibility: hidden;
+        transition: .3s ease-in-out;
+        transition-delay: 0s;
+        z-index: 1;
+    }
+
+    .card:hover .content {
+        width: 290px;
+        height: 190px;
+        visibility: visible;
+        transition-delay: .5s;
+    }
+
+    .card .content .detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .card:hover .content .detail {
+        color: #181818;
+        opacity: 100%;
+        transition: 1s;
+        transition-delay: .3s;
+    }
+
+    .card .content .detail span {
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .card .content .detail button {
+        background: #b8854b;
+        margin-top: auto;
+        width: 75px;
+        height: 25px;
+        color: #ffffff;
+        font-size: 13px;
+        border: none;
+        border-radius: 8px;
+        transition: .3s ease-in-out;
+    }
+
+    .card .content .detail button:hover {
+        background: #d39f63;
+    }
+
+    .card .content .product-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card .content .product-image .box-image {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: -25%;
+        width: 100%;
+        height: 115%;
+        opacity: 0;
+        transform: scale(.5);
+        transition: all .5s ease-in-out;
+        transition-delay: 0s;
+    }
+
+    .card:hover .content .product-image .box-image {
+        top: -25%;
+        left: 0;
+        opacity: 100%;
+        transform: scale(1);
+        transition-delay: .3s;
+    }
+
+    .card .content .product-image .box-image .img-product {
+        width: 7rem;
+    }
+
+    @media (max-width: 720px) {
+        .text {
+            display: none;
+        }
+
+        .cards {
+            width: 100vh;
+        }
+
+        .card {
+            position: relative;
+            background: transparent;
+            width: 300px;
+            height: 300px;
+            border: none;
+        }
+
+        .products {
+            justify-content: unset;
+        }
+
+        .textStartFinal {
+            margin-top: 20%;
+        }
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos-Gato</title>
+    <link rel="stylesheet" href="../css/headerFooter.css">
+    <link rel="stylesheet" href="../css/produtos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <div id="headerContent">
+            <img src="../Images/arrowRight.png" alt="arrow" id="arrow">
+            <img src="../Images/Logo.png" id="logo">
+            <a href="../html/login.html" id='login'>Entrar</a>
+        </div>
+
+        <div id="sideMenu">
+            <a href="">Agendar Consulta</a>
+            <a href="">SAC</a>
+            <a href="">Feedback</a>
+        </div>
+
+        <section id="categories">
+            <a href="../html/produtosCachorro.html">Cachorro</a>
+            <a href="../html/produtosGato.html">Gato</a>
+            <a href="../html/produtosPeixe.html">Peixe</a>
+            <a href="../html/produtosPassaro.html">Pássaro</a>
+            <a href="../html/ofertas.html">Ofertas</a>
+        </section>
+    </header>
+
+    <main>
+        <div class="textStartFinal">
+            <h1 id="title">Gato</h1>
+
+            <p>Se estiver procurando produtos para seu felino, você veio ao lugar certo, pois a DEV&PET tem tudo que seu
+                gato precisa. Com uma variedade incrível de itens, seu pet ficará mais confortável e feliz no dia a dia.
+                <br>
+                Há rações, brinquedos, itens de higiene e beleza, remédio, acessórios para o dia a dia e
+                muito mais. Seu bichano vai adorar todo obem-estar e a felicidade que nossos itens vão proporcionar.
+                Venha conhecer alguns produtos disponíveis no catálogo!
+            </p>
+        </div>
+
+        <h2 class="text" id="title">Shampoo e higiene completa</h2>
+        <section class="products">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                style="width: 70%; margin-top: 150px;">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/shamp3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/shamp3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text">
+                <p>Os itens de beleza e higiene disponíveis na DEV&PET vão facilitar a limpeza do seu animal de
+                    estimação.
+                    Os felinos preferem os “banhos de língua”, mas os tutores podem ajudar com um shampoo. Os
+                    lenços umedecidos e a banheira do catálogo também vão fazer a diferença no dia a dia deles!
+                    <br>
+                    Outros produtos de higiene que servem para manter o bem-estar do pet são a lixa e o cortador de
+                    unha. Mesmo que eles desgastem as unhas nos brinquedos, pode ser necessário apará-las. Por isso, há
+                    diversas opções de aparadores. Já os cuidados com os pelos ficam em dia com escovas e luvas!
+                </p>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Ração úmida e outras opções</h2>
+        <section class="products">
+            <div class="text">
+                <p>Na DEV&PET, você encontra uma variedade incrível de ração. Diversas opções estão
+                    disponíveis
+                    para você manter a alimentação do seu felino saudável, completa e balanceada. Não se esqueça de
+                    pedir sempre a orientação do veterinário para determinar a dieta do pet.
+                    <br>
+                    Há opções de ração úmida, que devem ser consumidas mais rapidamente, mas têm o mesmo
+                    valor nutricional que outras. Além delas, existem alimentos para bichanos que vivem internamente e
+                    externamente, são castrados ou não. Opte por aquele que combina com os hábitos do seu amigo com
+                    patas!
+                </p>
+            </div>
+
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                style="width: 70%; margin-top: 150px;">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/racao3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/racao3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Medicamentos e vitaminas</h2>
+        <section class="products">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                style="width: 70%; margin-top: 150px;">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="cards">
+                            <div class="card">
+                                id="i" <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="cards">
+                            <div class="card">
+                                id="i" <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/vit3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/vit3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="text">
+                <p>A saúde do seu gatinho é muito importante e, para preservá-la sempre, a DEV&PET disponibiliza vários
+                    tipos de remédio para gato: dermatológicos, antipulgas, anti-inflamatórios e antibióticos. Todos
+                    devem ser adquiridos sempre somente com indicação de um veterinário.
+                    <br>
+                    Aqui, você ainda pode suplementar a alimentação do seu bichano com todos os nutrientes que ele
+                    precisa. Basta pedir a ajuda de um médico e escolher um dos suplementos e vitaminas
+                    indicados.
+                </p>
+            </div>
+        </section>
+
+        <h2 class="text" id="title">Tudo em acessórios</h2>
+        <section class="products">
+            <div class="text">
+                <p>O comedouro e o bebedouro são fundamentais no cotidiano dos felinos, pois permitem que eles se
+                    alimentem e se hidratem. Na DEV&PET, você encontra objetos feitos especialmente para os gatos, com a
+                    altura e a capacidade indicadas para eles. Assim, fica mais fácil atender as necessidades deles.
+                    <br>
+                    Para facilitar a vida do tutor também, o catálogo da DEV&PET apresenta incríveis porta-rações. Todos
+                    são muito resistentes, têm bastante capacidade de armazenamento e oferecem praticidade durante o
+                    uso. Dessa forma, você pode guardar o alimento de forma correta e segura.
+                </p>
+            </div>
+
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                style="width: 70%; margin-top: 150px;">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="cards">
+                            <div class="card" id="i">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac1g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac1g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac2g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac2g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="container-image">
+                                    <svg class="img-product" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                        version="1.1"
+                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                        viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs></defs>
+
+                                        <image x="0" y="0" width="100%" height="100px"
+                                            xlink:href="../Images/ProdutosImgs/ac3g.png" />
+                                    </svg>
+                                </div>
+                                <div class="content">
+                                    <div class="detail">
+                                        <span>Lorem <br> Ipsum dolor.</span>
+                                        <p>$199</p>
+                                        <button>Comprar</button>
+                                    </div>
+                                    <div class="product-image">
+                                        <div class="box-image">
+                                            <svg class="img-product" xmlns="http://www.w3.org/2000/svg"
+                                                xml:space="preserve" version="1.1"
+                                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                                                viewBox="0 0 116.83 182.61" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <defs></defs>
+
+                                                <image x="0" y="0" width="100%" height="300px"
+                                                    xlink:href="../Images/ProdutosImgs/ac3g.png" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <div class="textStartFinal">
+            <h2 id="title">Consulte um especialista</h2>
+            <p>Deseja saber a melhor ração, dicas de itens ou uma vitamina específica? Não
+                deixe de <a href="../html/veterinary.html">marcar sua consulta conosco
+                </a>, que além de oferecer maiores orientações, poderá dar dicas quanto à criação e à saúde do felino.
+                <br>
+                Além disso, leve o gato para check-up frequentemente, já que, assim, é possível identificar
+                possíveis predisposições a doenças e tratá-las adequadamente. Essa é a principal maneira de você
+                cuidar do animal sem medo e sempre seguindo as recomendações de quem mais entende do assunto.
+            </p>
+
+            <h2>Encontre ótimos produtos para gato na DEV&PET!</h2>
+            <p>
+                Aqui no Pet Shop on-line da DEV&PET, você encontra tudo para o dia a dia do seu gato. Como existem
+                produtos
+                incríveis por preços e condições atraentes, fica mais fácil adquiri-los para seu felino. Aproveite a
+                praticidade do catálogo e garanta já!
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footerContent">
+            <ul>DEV&PET | Paiva8859 - LuigiSousaa - GuiBrum22</ul>
+        </div>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script>
+    //====================================MENU====================================\\
+    var logo = document.getElementById('logo');
+
+    // EVENT LISTENERS
+    logo.addEventListener('click', function () {
+        if (!window.location.pathname.endsWith('/index.html')) {
+            homeRedirect();
+        }
+    });
+
+    // FUNCTIONS
+    function homeRedirect() {
+        window.location.href = '../index.html';
+    }
+
+    //====================================SIDE-MENU====================================\\
+    const sideMenu = document.getElementById('sideMenu');
+    const arrow = document.getElementById('arrow');
+    var cSideMenu = 0;
+    let isRotated = false;
+
+    //EVENT LISTENERS
+    arrow.addEventListener('click', showSideMenu);
+
+    //FUNCTIONS
+    function showSideMenu() {
+        if (cSideMenu == 0) {
+            sideMenu.style.display = 'flex';
+            cSideMenu = 1;
+        } else {
+            sideMenu.style.display = 'none';
+            cSideMenu = 0;
+        }
+    }
+
+
+    arrow.addEventListener("click", () => {
+        if (isRotated) {
+            arrow.style.transform = "rotate(0deg)";
+            isRotated = false;
+        } else {
+            arrow.style.transform = "rotate(90deg)";
+            isRotated = true;
+        }
+    });
+</script>
+
+</html>
