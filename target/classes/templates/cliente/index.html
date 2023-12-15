@@ -1,0 +1,434 @@
+<style>
+    header{
+    background-color: #392818;
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+#headerContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#logo{
+    width: 80px;
+    height: 80px;
+}
+#headerContent a{
+    font-size: 2.5vh;
+    color: aliceblue;
+    text-decoration: none;
+}
+#arrow{
+    height: 6vh;
+    transition: transform 0.5s;
+}
+
+body{
+    margin: 0px;
+    height: 330vh;
+}
+
+footer{
+    width: 100%;
+    height: 12%;
+    background-color: #392818;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+}
+#footerContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#footerContent ul{
+    color: aliceblue;
+}
+
+/*NON SELECTABLE ITEMS*/
+#login{
+    user-select: none;
+    margin-top: 15px;
+}
+img{
+    user-select: none;
+}
+
+/*CATEGORIES*/
+    #categories{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #ffffcc;
+    height: 5vh;
+}
+#categories a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*SIDE MENU*/
+#sideMenu{
+    display: flex;
+    flex-direction: column;
+    display: none;
+    position: absolute;
+    z-index: 2;
+    background-color: #392818;
+    width: 25vh;
+    height: 15vh;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#sideMenu a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+main{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*RECOMENDED*/
+.recomended{
+    height: 40%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.recomended span{
+    font-size: larger;
+    color: #392818;
+}
+
+.imgs img{
+    height: 35vh;
+    width: 30vh;
+}
+
+
+/*ABOUT US*/
+.aboutUs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 300px;
+    width: 70%;
+}
+
+.profileImgs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+.profileImgs2{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 100%;
+}
+.circleImg img{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.profileDescriptions{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.description{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.description span{
+    font-size: large;
+}
+
+@media (max-width: 720px){
+    #responsive{
+        width: 80px;
+        height: 120px;
+    }
+}
+
+@media (max-width:460px){
+    #responsive{
+        width: 60px;
+        height: 80px;
+    }
+
+    .aboutUs{
+        font-size: small;
+    }
+    .aboutUs img{
+        height: 60px;
+        width: 60px;
+    }
+
+    .recomended{
+        height: 3%;
+        margin-top: 150px;
+    }
+
+    .dogs{
+        height: 15%;
+        align-items: flex-end;
+    }
+
+    main{
+        height: 200vh;
+    }
+
+    body{
+        height: 190vh;
+    }
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV&PET</title>
+    <link rel="stylesheet" href="./css/headerFooter.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <header>
+        <div id="headerContent">
+            <img src="./Images/arrowRight.png" alt="arrow" id="arrow">
+            <img src="./Images/Logo.png" id="logo">
+            <a href="./html/login.html" id='login'>Entrar</a>
+        </div>
+
+        <div id="sideMenu">
+            <a href="">Agendar Consulta</a>
+            <a href="">SAC</a>
+            <a href="">Feedback</a>
+        </div>
+
+        <section id="categories">
+            <a href="./html/produtosCachorro.html">Cachorro</a>
+            <a href="./html/produtosGato.html">Gato</a>
+            <a href="./html/produtosPeixe.html">Peixe</a>
+            <a href="./html/produtosPassaro.html">Pássaro</a> 
+            <a href="./html/ofertas.html">Ofertas</a>
+        </section>
+    </header>
+
+    <main>
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="width: 70%; margin-top: 150px;">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="Images/ImagesHome/Banner.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images/ImagesHome/Banner.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="Images/ImagesHome/Banner.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <section class="recomended">
+            <div class="dogs">
+                <div class="imgs">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                        style="height: 300px; margin-top: 250px;">
+                        <span><b>Recomendados para cachorros</b></span>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="Images/ImagesHome/CardBanho.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardDog.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardBrinquedos.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardDog.png" alt="" id="responsive">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="Images/ImagesHome/CardBanho.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardDog.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardBrinquedos.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardDog.png" alt="" id="responsive">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="Images/ImagesHome/CardBanho.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardDog.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardBrinquedos.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardDog.png" alt="" id="responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cats">
+                <div class="imgs">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"
+                        style="height: 396px;">
+                        <span><b>Recomendados para gatos</b></span>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="Images/ImagesHome/CardBanhoGato.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardSache.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardBrinquedos.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardInteracao.png" alt="" id="responsive">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="Images/ImagesHome/CardBanhoGato.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardSache.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardBrinquedos.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardInteracao.png" alt="" id="responsive">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="Images/ImagesHome/CardBanhoGato.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardSache.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardBrinquedos.png" alt="" id="responsive">
+                                <img src="Images/ImagesHome/CardInteracao.png" alt="" id="responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <h3 style="margin-top: 300px;">QUEM SOMOS NÓS</h3>
+        <section class="aboutUs">
+            <div class="profileImgs">
+                <div class="circleImg">
+                    <img src="./Images/Rostos/luigi.jpg" alt="">
+                </div>
+
+                <div class="circleImg">
+                    <img src="./Images/Rostos/brum.jpg" alt="">
+                </div>
+            </div>
+
+            <div class="profileDescriptions">
+                <div class="description">
+                    <span><b>Luigi</b></span>
+                    <p>Desenvolvedor de nosso BackEnd e banco de dados</p>
+                </div>
+
+                <div class="description">
+                    <span><b>Paiva</b></span>
+                    <p>Desenvolvedor FrontEnd e Backend</p>
+                </div>
+
+                <div class="description">
+                    <span><b>Brum</b></span>
+                    <p>Desenvolvedor FrontEnd</p>
+                </div>
+            </div>
+
+            <div class="profileImgs2">
+                <div class="circleImg">
+                    <img src="./Images/Rostos/paiva.jpg" alt="">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footerContent">
+            <ul>DEV&PET | Paiva8859 - LuigiSousaa - GuiBrum22</ul>
+        </div>
+    </footer>
+</body>
+<script src="./js/index.js"></script>
+<script src="./js/produtos.js"></script>
+<script src="./js/headerFooter.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+    <script>
+        //====================================MENU====================================\\
+var logo = document.getElementById('logo');
+
+// EVENT LISTENERS
+logo.addEventListener('click', function () {
+    if (!window.location.pathname.endsWith('/index.html')) {
+        homeRedirect();
+    }
+});
+
+// FUNCTIONS
+function homeRedirect() {
+    window.location.href = '../index.html';
+}
+
+//====================================SIDE-MENU====================================\\
+const sideMenu = document.getElementById('sideMenu');
+const arrow = document.getElementById('arrow');
+var cSideMenu = 0;
+let isRotated = false;
+
+//EVENT LISTENERS
+arrow.addEventListener('click', showSideMenu);
+
+//FUNCTIONS
+function showSideMenu() {
+    if (cSideMenu == 0) {
+        sideMenu.style.display = 'flex';
+        cSideMenu = 1;
+    } else {
+        sideMenu.style.display = 'none';
+        cSideMenu = 0;
+    }
+}
+
+
+arrow.addEventListener("click", () => {
+    if (isRotated) {
+        arrow.style.transform = "rotate(0deg)";
+        isRotated = false;
+    } else {
+        arrow.style.transform = "rotate(90deg)";
+        isRotated = true;
+    }
+});
+    </script>
+</html>
