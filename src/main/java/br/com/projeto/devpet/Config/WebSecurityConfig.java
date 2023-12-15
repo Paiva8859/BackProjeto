@@ -27,8 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/**/editar").hasAuthority(Perfil.ADMIN.toString())
             .antMatchers("/**/excluir").hasAuthority(Perfil.ADMIN.toString())
             .anyRequest().authenticated()
-            .and()
-            .formLogin()
+            .and();
+        http.formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/clientes")
                 .permitAll()
