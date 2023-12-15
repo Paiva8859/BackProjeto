@@ -2,7 +2,7 @@
 <aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a th:href="@{/}" class="brand-link">
-    <img th:src="@{/img/tw-logo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+    <img th:src="@{/img/devpet-logo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
     <span class="brand-text font-weight-light">DEV&PET</span>
   </a>
 
@@ -20,7 +20,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
               <a th:href="@{/clientes/cadastrar}" class="nav-link">
                 <i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
@@ -44,7 +44,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
               <a th:href="@{/funcionarios/cadastrar}" class="nav-link">
                 <i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
@@ -68,7 +68,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
               <a th:href="@{/cargos/cadastrar}" class="nav-link">
                 <i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>
@@ -92,7 +92,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
               <a th:href="@{/projetos/cadastrar}" class="nav-link">
                 <i class="nav-icon fas fa-edit nav-icon"></i>
                 <p>Cadastrar</p>

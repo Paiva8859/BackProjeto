@@ -140,11 +140,25 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="endereco.complemento">Complemento</label>
-                      <input type="text" class="form-control" placeholder="Quadra D" th:field="*{endereco.complemento}">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="endereco.complemento">Complemento</label>
+                        <input type="text" class="form-control" placeholder="Quadra D"
+                          th:field="*{endereco.complemento}">
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset th:if="${funcionario.id == null}">
+                <legend>Dados de login</legend>
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" th:field="*{senha}">
                   </div>
                 </div>
               </fieldset>
